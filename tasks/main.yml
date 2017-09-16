@@ -6,7 +6,7 @@
     state: present
 
 - name: check if we need to perform apt-select
-  shell: "find /etc/apt/sources.list -amin +{{ apt_select_freeze_period }}"
+  shell: "find /etc/apt/sources.list -amin +{{ apt_select_ignore_period }}"
   register: sources_list_find
   changed_when: False
 
