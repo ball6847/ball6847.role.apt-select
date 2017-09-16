@@ -6,7 +6,7 @@ Install and set apt mirror to the closest server using apt-select
 Requirements
 ------------
 
-- pip
+- pip : `geerlingguy.pip` is a good one, if you don't have pip yet.
 
 Role Variables
 --------------
