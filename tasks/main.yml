@@ -1,0 +1,26 @@
+---
+- name: install apt-select if neccessary
+  pip:
+    name: apt-select
+    version: "{{ apt_select_version }}"
+    state: present
+
+- name: check if we need to perform apt-select
+  shell: "find /etc/apt/sources.list -amin +{{ apt_select_freeze_period }}"
+  register: sources_list_find
+  changed_when: False
+
+- name: perform apt-select
+  shell: "echo 'yes' | apt-select --country {{ apt_select_country }} --top-number {{ apt_select_top_number }}"
+  args:
+    chdir: /etc/apt/
+  when: "sources_list_find.stdout != ''"
+  register: apt_select_cmd
+  changed_when: "'New config file saved to' in apt_select_cmd.stdout"
+  
+- name: touch /etc/apt/sources.list if not changed
+  file:
+    path: /etc/apt/sources.list
+    state: touch
+  when: "apt_select_cmd.skipped == False
+    and apt_select_cmd.changed == False"

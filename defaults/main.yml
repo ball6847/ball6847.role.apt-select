@@ -1,0 +1,5 @@
+---
+apt_select_version: 2.0.0
+apt_select_ignore_period: 1440
+apt_select_country: US
+apt_select_top_number: 3

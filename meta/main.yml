@@ -1,0 +1,9 @@
+galaxy_info:
+  author: Porawit Poboonma
+  description: Install and perform apt select to closest mirror
+  company: Porawit Poboobma
+  license: license (GPLv2, CC-BY, etc)
+  min_ansible_version: 1.2
+  galaxy_tags: []
+
+dependencies: []
