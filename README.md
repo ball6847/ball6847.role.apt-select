@@ -17,7 +17,15 @@ Version of apt-select to be installed, default to 2.0.0
 
 **apt_select_ignore_period**: `1440`
 
-Set a period of time in minutes, to skip the task if `/etc/apt/source.list` has been changed in this period. (default to 1 day)
+Set a period of time in minutes, to skip the task if `/etc/apt/source.list` has been changed in this period. (default to 1 day).
+
+You might need to set this variable to `0` on the first run to force task to be run.
+
+You can run playbook like this to force checking 
+
+```sh
+ansible-playbook -i inventories/hosts main.yml -e apt_select_ignore_period=0
+```
 
 **apt_select_country**: `US`
 
