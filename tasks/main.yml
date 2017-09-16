@@ -11,7 +11,7 @@
   changed_when: False
 
 - name: perform apt-select
-  shell: "echo 'yes' | apt-select --country {{ apt_select_country }} --top-number {{ apt_select_top_number }}"
+  shell: "echo 'yes' | apt-select --country {{ apt_select_country }} --top-number {{ apt_select_top_number }}; true"
   args:
     chdir: /etc/apt/
   when: "sources_list_find.stdout != ''"
@@ -22,5 +22,4 @@
   file:
     path: /etc/apt/sources.list
     state: touch
-  when: "apt_select_cmd.skipped == False
-    and apt_select_cmd.changed == False"
+  when: "'skipped' not in apt_select_cmd and apt_select_cmd.changed == False"
